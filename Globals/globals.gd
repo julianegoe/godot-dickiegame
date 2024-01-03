@@ -1,7 +1,7 @@
 extends Node
 
 signal delete_danger_zone
-signal go_home
+
 var nice_count = 0
 var naughty_count = 0
 
@@ -61,4 +61,4 @@ class Quest:
 func transition_to_end():
 	if End.done:
 		await get_tree().create_timer(3).timeout
-		SceneTransition.change_scene("res://scenes/end_scene.tscn")
+		SceneTransition.change_scene("res://scenes/credits.tscn")

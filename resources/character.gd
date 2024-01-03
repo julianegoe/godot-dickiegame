@@ -548,7 +548,6 @@ var dialogue_dict: Dictionary = {
   }
 }
 
-
 func talk_to():
 	return dialogue_dict[name]
 	

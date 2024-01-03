@@ -4,8 +4,8 @@ signal closeBook
 
 @export var content: BookContent
 
-@onready var leftPage: RichTextLabel = $Sprite2D/LeftPage/MarginContainer/VBoxContainer/RichTextLabel
-@onready var rightPage: RichTextLabel = $Sprite2D/RightPage/MarginContainer/VBoxContainer/RichTextLabel
+@onready var leftPage: RichTextLabel = $LeftPage/MarginContainer/VBoxContainer/RichTextLabel
+@onready var rightPage: RichTextLabel = $RightPage/MarginContainer/VBoxContainer/RichTextLabel
 @onready var leftArrowContainer: MarginContainer = $LeftContainer
 @onready var rightArrowContainer: MarginContainer = $RightContainer
 
