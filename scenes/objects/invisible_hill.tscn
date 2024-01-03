@@ -1,0 +1,52 @@
+[gd_scene load_steps=12 format=3 uid="uid://cyj3eq6d0oe"]
+
+[ext_resource type="PackedScene" uid="uid://jw118e0dmrti" path="res://scenes/objects/entity.tscn" id="1_q5mpo"]
+[ext_resource type="Resource" uid="uid://dsd1likihuvg1" path="res://resources/Interactables/invisible_hill_resource.tres" id="2_2ael6"]
+[ext_resource type="Script" path="res://scenes/objects/invisible_hill.gd" id="2_jt4ve"]
+[ext_resource type="Resource" uid="uid://cvqbffps4jeer" path="res://resources/ActionItems/look_at.tres" id="2_qs8tl"]
+[ext_resource type="Resource" uid="uid://b3vaa8jqblc3x" path="res://resources/ActionItems/interact.tres" id="3_64l52"]
+[ext_resource type="Script" path="res://resources/action_menu_resource.gd" id="4_5fvqn"]
+[ext_resource type="Texture2D" uid="uid://cdmr0xg7mrfd4" path="res://assets/objects/lamp.png" id="7_y0v0n"]
+[ext_resource type="Texture2D" uid="uid://bf4vhbmmarbwu" path="res://assets/lights/circle.png" id="8_dqu0d"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_mbuni"]
+size = Vector2(100, 50)
+
+[sub_resource type="Resource" id="Resource_xlbrj"]
+script = ExtResource("4_5fvqn")
+action_items = Array[Resource("res://resources/action_item.gd")]([ExtResource("2_qs8tl"), ExtResource("3_64l52")])
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_e4msa"]
+radius = 84.0
+height = 244.0
+
+[node name="InvisibleHill" instance=ExtResource("1_q5mpo")]
+script = ExtResource("2_jt4ve")
+resource = ExtResource("2_2ael6")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, 52)
+texture = SubResource("PlaceholderTexture2D_mbuni")
+
+[node name="ActionMenu" parent="." index="1"]
+actions = SubResource("Resource_xlbrj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_e4msa")
+
+[node name="Lamp" type="Sprite2D" parent="." index="3"]
+visible = false
+position = Vector2(-42, -90)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("7_y0v0n")
+
+[node name="PointLight2D" type="PointLight2D" parent="Lamp" index="0"]
+position = Vector2(0, 7.66666)
+energy = 2.0
+range_layer_min = -100
+range_layer_max = 100
+shadow_enabled = true
+texture = ExtResource("8_dqu0d")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

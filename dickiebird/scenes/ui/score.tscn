@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://8jy45divx1yx"]
+
+[ext_resource type="Script" path="res://dickiebird/scenes/ui/score.gd" id="1_tmjfi"]
+
+[node name="Score" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_tmjfi")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 16
+text = "Score:"
+
+[node name="Score" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "0
+"

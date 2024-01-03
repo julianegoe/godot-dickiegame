@@ -1,0 +1,39 @@
+[gd_scene load_steps=10 format=3 uid="uid://c56dat2tgsb54"]
+
+[ext_resource type="PackedScene" uid="uid://jw118e0dmrti" path="res://scenes/objects/entity.tscn" id="1_qci4p"]
+[ext_resource type="Script" path="res://scenes/objects/bed.gd" id="2_7osor"]
+[ext_resource type="Texture2D" uid="uid://beffuuqsywtwd" path="res://assets/objects/bed.png" id="2_ksv1d"]
+[ext_resource type="Script" path="res://resources/portals.gd" id="3_njnao"]
+[ext_resource type="Resource" uid="uid://cvqbffps4jeer" path="res://resources/ActionItems/look_at.tres" id="4_wfpp5"]
+[ext_resource type="Script" path="res://resources/action_menu_resource.gd" id="6_726ia"]
+[ext_resource type="Resource" uid="uid://c80fmhicnmui" path="res://resources/ActionItems/open.tres" id="6_r667q"]
+
+[sub_resource type="Resource" id="Resource_642x7"]
+script = ExtResource("3_njnao")
+name = "bed"
+look_at_text = "Gemütlich"
+hover_text = "Ein Bett"
+open_text = "Nur ein kurzes Nickerchen..."
+open_to = "res://dickiebird/scenes/dickiebird.tscn"
+is_open = true
+
+[sub_resource type="Resource" id="Resource_iu4l2"]
+script = ExtResource("6_726ia")
+action_items = Array[Resource("res://resources/action_item.gd")]([ExtResource("4_wfpp5"), ExtResource("6_r667q")])
+
+[node name="Bed" instance=ExtResource("1_qci4p")]
+script = ExtResource("2_7osor")
+resource = SubResource("Resource_642x7")
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="." index="0"]
+position = Vector2(2, 0.5)
+polygon = PackedVector2Array(67, 89.5, 207, -49.5, 206, -87.5, -7, -85.5, -215, 88.5)
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(6, 6)
+texture = ExtResource("2_ksv1d")
+
+[node name="ActionMenu" parent="." index="2"]
+actions = SubResource("Resource_iu4l2")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

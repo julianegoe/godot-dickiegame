@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://jw118e0dmrti"]
+
+[ext_resource type="Script" path="res://scenes/objects/entity.gd" id="1_atop3"]
+[ext_resource type="PackedScene" uid="uid://dh7ht42c4jqv5" path="res://scenes/action_menu.tscn" id="3_rbad5"]
+
+[node name="Entity" type="Area2D" groups=["Entities"]]
+process_mode = 3
+script = ExtResource("1_atop3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="ActionMenu" parent="." instance=ExtResource("3_rbad5")]
+scale = Vector2(4, 4)
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

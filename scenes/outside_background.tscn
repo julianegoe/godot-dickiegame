@@ -1,0 +1,62 @@
+[gd_scene load_steps=7 format=3 uid="uid://6qcxq7i3vo7s"]
+
+[ext_resource type="Texture2D" uid="uid://fotv3mhr4kw0" path="res://assets/level1_background/sky.png" id="1_bbm3x"]
+[ext_resource type="Texture2D" uid="uid://do0snpcahhpmg" path="res://assets/level1_background/mountains.png" id="2_hrbgx"]
+[ext_resource type="Texture2D" uid="uid://csk06qqe2btof" path="res://assets/level1_background/ground.png" id="3_80vrj"]
+[ext_resource type="Texture2D" uid="uid://b55po0k3ygryu" path="res://assets/level1_background/middleground.png" id="4_c8v4u"]
+[ext_resource type="Texture2D" uid="uid://cc816uxnpc2go" path="res://assets/level1_background/water.png" id="5_akopr"]
+[ext_resource type="Texture2D" uid="uid://8tvbisefwinn" path="res://assets/level1_background/fog.png" id="6_6vyj0"]
+
+[node name="OutSideBackground" type="ParallaxBackground"]
+
+[node name="Sky" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(1200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Sky"]
+scale = Vector2(3, 3)
+texture = ExtResource("1_bbm3x")
+centered = false
+
+[node name="Mountains" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(1200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Mountains"]
+scale = Vector2(3, 3)
+texture = ExtResource("2_hrbgx")
+centered = false
+
+[node name="Ground" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground"]
+scale = Vector2(3, 3)
+texture = ExtResource("3_80vrj")
+centered = false
+
+[node name="Ice" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.9, 0.9)
+motion_mirroring = Vector2(1200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Ice"]
+scale = Vector2(3, 3)
+texture = ExtResource("4_c8v4u")
+centered = false
+
+[node name="Water" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Water"]
+scale = Vector2(3, 3)
+texture = ExtResource("5_akopr")
+centered = false
+
+[node name="Fog" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Fog"]
+modulate = Color(1, 1, 1, 0.341176)
+scale = Vector2(3, 3)
+texture = ExtResource("6_6vyj0")
+centered = false

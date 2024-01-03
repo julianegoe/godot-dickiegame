@@ -1,0 +1,79 @@
+[gd_scene load_steps=11 format=3 uid="uid://dlfg1hbfye5ab"]
+
+[ext_resource type="PackedScene" uid="uid://c34txb57dxkrr" path="res://scenes/global_level.tscn" id="1_45ovi"]
+[ext_resource type="Script" path="res://scenes/tent_inside.gd" id="2_3jhc6"]
+[ext_resource type="Texture2D" uid="uid://bai37alirkeya" path="res://assets/level2_background/tent_inside_background.png" id="2_kc7a4"]
+[ext_resource type="Texture2D" uid="uid://dv241pbw076q6" path="res://assets/level2_background/tent_inside_foreground.png" id="3_481qi"]
+[ext_resource type="PackedScene" uid="uid://c56dat2tgsb54" path="res://scenes/objects/bed.tscn" id="3_cc7uy"]
+[ext_resource type="PackedScene" uid="uid://bsl7xfxvqsmhk" path="res://scenes/objects/polarbear_skull.tscn" id="4_ahphp"]
+[ext_resource type="PackedScene" uid="uid://j7gwbq1ewtsv" path="res://scenes/objects/lamp.tscn" id="5_lhufm"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_j5ceg"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_clnt6"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evuhs"]
+size = Vector2(94, 274)
+
+[node name="TentInside" instance=ExtResource("1_45ovi")]
+script = ExtResource("2_3jhc6")
+
+[node name="Background" type="Sprite2D" parent="." index="0"]
+scale = Vector2(5.33333, 5.76)
+texture = ExtResource("2_kc7a4")
+centered = false
+
+[node name="Foreground" type="Sprite2D" parent="." index="1"]
+z_index = 1
+scale = Vector2(5.33333, 5.76)
+texture = ExtResource("3_481qi")
+centered = false
+
+[node name="Collectables" type="Node2D" parent="." index="2"]
+
+[node name="PolarbearSkull" parent="Collectables" index="0" instance=ExtResource("4_ahphp")]
+position = Vector2(855, 564)
+
+[node name="Lamp" parent="Collectables" index="1" instance=ExtResource("5_lhufm")]
+position = Vector2(693, 517)
+
+[node name="Interactables" type="Node2D" parent="." index="3"]
+
+[node name="Bed" parent="Interactables" index="0" instance=ExtResource("3_cc7uy")]
+position = Vector2(918, 631)
+
+[node name="Dickie" parent="." index="4"]
+scale = Vector2(6, 6)
+
+[node name="TentBounds" type="Node2D" parent="." index="5"]
+
+[node name="Left" type="StaticBody2D" parent="TentBounds" index="0"]
+position = Vector2(-100, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TentBounds/Left" index="0"]
+shape = SubResource("WorldBoundaryShape2D_j5ceg")
+
+[node name="Right" type="StaticBody2D" parent="TentBounds" index="1"]
+position = Vector2(1300, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TentBounds/Right" index="0"]
+shape = SubResource("WorldBoundaryShape2D_clnt6")
+
+[node name="Exit" type="Area2D" parent="TentBounds" index="2"]
+position = Vector2(-25, 411)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TentBounds/Exit" index="0"]
+position = Vector2(0, 145)
+shape = SubResource("RectangleShape2D_evuhs")
+
+[node name="EntityInfoText" parent="UI" index="1"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+grow_vertical = 0
+
+[connection signal="body_entered" from="TentBounds/Exit" to="." method="_on_exit_body_entered"]
+[connection signal="finished" from="ThemeMusic" to="." method="_on_theme_music_finished"]

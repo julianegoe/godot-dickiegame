@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CharacterResource" load_steps=2 format=3 uid="uid://7buae523trat"]
+
+[ext_resource type="Script" path="res://resources/character.gd" id="1_7vmwk"]
+
+[resource]
+script = ExtResource("1_7vmwk")
+name = "dickie"
+look_at_text = ""
+hover_text = ""

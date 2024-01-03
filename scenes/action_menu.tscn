@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh7ht42c4jqv5"]
+
+[ext_resource type="Script" path="res://scenes/action_menu.gd" id="1_3tdvf"]
+
+[node name="ActionMenu" type="Node2D"]
+visible = false
+z_index = 100
+script = ExtResource("1_3tdvf")
+
+[node name="LeftAction" type="Sprite2D" parent="."]
+hframes = 5
+
+[node name="RightAction" type="Sprite2D" parent="."]
+hframes = 5

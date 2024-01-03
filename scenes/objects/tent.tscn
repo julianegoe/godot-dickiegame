@@ -1,0 +1,33 @@
+[gd_scene load_steps=10 format=3 uid="uid://dm85h0fbm4ru0"]
+
+[ext_resource type="PackedScene" uid="uid://jw118e0dmrti" path="res://scenes/objects/entity.tscn" id="1_1yjk2"]
+[ext_resource type="Texture2D" uid="uid://ckmibdjsd01co" path="res://assets/objects/tent.png" id="1_6c2m7"]
+[ext_resource type="Script" path="res://scenes/objects/tent.gd" id="1_fdife"]
+[ext_resource type="Resource" uid="uid://bt2wioho36kea" path="res://resources/Portals/tent_resource.tres" id="3_u05tl"]
+[ext_resource type="Resource" uid="uid://cvqbffps4jeer" path="res://resources/ActionItems/look_at.tres" id="4_1el5i"]
+[ext_resource type="Resource" uid="uid://c80fmhicnmui" path="res://resources/ActionItems/open.tres" id="5_12s6u"]
+[ext_resource type="Script" path="res://resources/action_menu_resource.gd" id="5_40hj5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbyfc"]
+size = Vector2(231, 149)
+
+[sub_resource type="Resource" id="Resource_p2pp5"]
+script = ExtResource("5_40hj5")
+action_items = Array[Resource("res://resources/action_item.gd")]([ExtResource("4_1el5i"), ExtResource("5_12s6u")])
+
+[node name="Tent" instance=ExtResource("1_1yjk2")]
+script = ExtResource("1_fdife")
+resource = ExtResource("3_u05tl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+position = Vector2(-30.5, -4.5)
+shape = SubResource("RectangleShape2D_tbyfc")
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(3, 3)
+texture = ExtResource("1_6c2m7")
+
+[node name="ActionMenu" parent="." index="2"]
+actions = SubResource("Resource_p2pp5")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://l4hgenitfis2"]
+
+[ext_resource type="Texture2D" uid="uid://bai37alirkeya" path="res://assets/level2_background/tent_inside_background.png" id="1_wm2mb"]
+[ext_resource type="Texture2D" uid="uid://dv241pbw076q6" path="res://assets/level2_background/tent_inside_foreground.png" id="2_p4gd8"]
+
+[node name="TentBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+
+[node name="Background" type="Sprite2D" parent="ParallaxLayer"]
+scale = Vector2(5.33778, 5.704)
+texture = ExtResource("1_wm2mb")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+z_index = 2
+
+[node name="Foreground" type="Sprite2D" parent="ParallaxLayer2"]
+z_index = 2
+scale = Vector2(5.33778, 5.704)
+texture = ExtResource("2_p4gd8")
+centered = false

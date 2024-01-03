@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://bq15d4pxvlnat"]
+
+[ext_resource type="PackedScene" uid="uid://c34txb57dxkrr" path="res://scenes/global_level.tscn" id="1_jauqi"]
+[ext_resource type="Texture2D" uid="uid://da8qdvh1fsu0l" path="res://assets/level_3_background/cave_inside_foreground.png" id="2_su4e4"]
+
+[node name="TestPhysics" instance=ExtResource("1_jauqi")]
+
+[node name="Dickie" parent="." index="0"]
+position = Vector2(206, 564)
+
+[node name="Camera2D" type="Camera2D" parent="Dickie" index="2"]
+position = Vector2(131.333, -66)
+position_smoothing_enabled = true
+
+[node name="UI" parent="." index="1"]
+visible = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." index="3"]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" index="0"]
+scale = Vector2(3, 3)
+texture = ExtResource("2_su4e4")
+centered = false
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" index="1"]
+polygon = PackedVector2Array(0, 603, 109, 610, 174, 613, 281, 586, 360, 588, 446, 573, 531, 559, 635, 544, 748, 514, 833, 513, 962, 541, 1143, 584, 1199, 594, 1203, 723, -8, 724)

@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PortalsResource" load_steps=2 format=3 uid="uid://dnl08wjeh7brb"]
+
+[ext_resource type="Script" path="res://resources/portals.gd" id="1_mkaiv"]
+
+[resource]
+script = ExtResource("1_mkaiv")
+name = "cave_exit"
+look_at_text = "Hier geht's wieder raus."
+hover_text = "Höhlenausgang"
+open_text = "Ciao."
+open_to = "res://scenes/outside.tscn"
+is_open = true

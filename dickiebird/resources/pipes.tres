@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="Pipes" load_steps=2 format=3 uid="uid://b2lkanv6csjrd"]
+
+[ext_resource type="Script" path="res://dickiebird/scripts/pipes_resource.gd" id="1_bjt2q"]
+
+[resource]
+script = ExtResource("1_bjt2q")
+min_position = 30
+max_position = 100

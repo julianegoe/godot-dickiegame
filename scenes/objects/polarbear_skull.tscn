@@ -1,0 +1,33 @@
+[gd_scene load_steps=10 format=3 uid="uid://bsl7xfxvqsmhk"]
+
+[ext_resource type="PackedScene" uid="uid://jw118e0dmrti" path="res://scenes/objects/entity.tscn" id="1_uahk2"]
+[ext_resource type="Texture2D" uid="uid://34bifv2igjlc" path="res://assets/objects/polarbear_skull.png" id="2_33s82"]
+[ext_resource type="Script" path="res://scenes/objects/polarbear_skull.gd" id="2_dsfvn"]
+[ext_resource type="Resource" uid="uid://cp2wb0yr2bbca" path="res://resources/Collectables/polarbear_skull.tres" id="2_ng5rk"]
+[ext_resource type="Resource" uid="uid://cvqbffps4jeer" path="res://resources/ActionItems/look_at.tres" id="3_ureut"]
+[ext_resource type="Resource" uid="uid://c5dq486hi53x4" path="res://resources/ActionItems/take.tres" id="4_7snfu"]
+[ext_resource type="Script" path="res://resources/action_menu_resource.gd" id="5_gfy88"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_im21x"]
+radius = 18.0278
+
+[sub_resource type="Resource" id="Resource_wrbfg"]
+script = ExtResource("5_gfy88")
+action_items = Array[Resource("res://resources/action_item.gd")]([ExtResource("3_ureut"), ExtResource("4_7snfu")])
+
+[node name="PolarbearSkull" groups=["Collectable"] instance=ExtResource("1_uahk2")]
+script = ExtResource("2_dsfvn")
+resource = ExtResource("2_ng5rk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+scale = Vector2(3, 3)
+shape = SubResource("CircleShape2D_im21x")
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(3, 3)
+texture = ExtResource("2_33s82")
+
+[node name="ActionMenu" parent="." index="2"]
+actions = SubResource("Resource_wrbfg")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://dpivvlwv65rna"]
+
+[ext_resource type="Texture2D" uid="uid://dl0ffnf7c6le1" path="res://dickiebird/assets/dickie_move1.png" id="1_crp8k"]
+[ext_resource type="Script" path="res://dickiebird/scenes/dickie_bird.gd" id="1_qgqxr"]
+[ext_resource type="Texture2D" uid="uid://b6085vwa1srgw" path="res://dickiebird/assets/dickie_move2.png" id="2_d86v4"]
+[ext_resource type="Resource" uid="uid://bne4oijxjrbsa" path="res://dickiebird/resources/score.tres" id="2_uam1t"]
+[ext_resource type="Texture2D" uid="uid://diodblb31cjdu" path="res://dickiebird/assets/dickie_move3.png" id="3_sygiu"]
+[ext_resource type="Texture2D" uid="uid://dlx5pbxbn7qtw" path="res://dickiebird/assets/dickie_move4.png" id="4_ehsis"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_dcq8i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_crp8k")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_d86v4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_sygiu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ehsis")
+}],
+"loop": true,
+"name": &"fly",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_at1ap"]
+radius = 9.05539
+
+[node name="DickieBird" type="CharacterBody2D"]
+floor_constant_speed = true
+script = ExtResource("1_qgqxr")
+score = ExtResource("2_uam1t")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_dcq8i")
+animation = &"fly"
+frame_progress = 0.500667
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 1)
+shape = SubResource("CircleShape2D_at1ap")

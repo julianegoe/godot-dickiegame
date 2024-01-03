@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CharacterResource" load_steps=2 format=3 uid="uid://bx63a2gqoykl0"]
+
+[ext_resource type="Script" path="res://resources/character.gd" id="1_yst8w"]
+
+[resource]
+script = ExtResource("1_yst8w")
+name = "polar_bear"
+look_at_text = "Oh oh."
+hover_text = "Eisbär"

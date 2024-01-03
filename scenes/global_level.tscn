@@ -1,0 +1,57 @@
+[gd_scene load_steps=10 format=3 uid="uid://c34txb57dxkrr"]
+
+[ext_resource type="PackedScene" uid="uid://xc6y4e4g4hsq" path="res://scenes/characters/dickie.tscn" id="1_5x5qi"]
+[ext_resource type="Script" path="res://scenes/global_level.gd" id="1_jo3ve"]
+[ext_resource type="PackedScene" uid="uid://cddt1gj2w7mwd" path="res://scenes/ui/inventory.tscn" id="2_vb13a"]
+[ext_resource type="Script" path="res://scenes/ui/UI.gd" id="3_m37ap"]
+[ext_resource type="PackedScene" uid="uid://cy8copom8w6kx" path="res://scenes/ui/look_at_text.tscn" id="6_2vnsa"]
+[ext_resource type="PackedScene" uid="uid://dtop0060bhp2d" path="res://scenes/ui/entity_info_text.tscn" id="6_eehix"]
+[ext_resource type="AudioStream" uid="uid://rj2sv641wcb1" path="res://assets/audio/704749__err0rc0de__grab-item.wav" id="7_3pddl"]
+[ext_resource type="AudioStream" uid="uid://dc7jh5yuawx2f" path="res://assets/audio/580826__obrymec__inventory_click.wav" id="7_o8ra2"]
+[ext_resource type="AudioStream" uid="uid://ced14dun6sshj" path="res://assets/audio/542030__rob_marion__gasp_item-interact_1.wav" id="9_gebye"]
+
+[node name="GlobalLevel" type="Node2D"]
+script = ExtResource("1_jo3ve")
+metadata/_edit_lock_ = true
+
+[node name="Dickie" parent="." groups=["Dickie"] instance=ExtResource("1_5x5qi")]
+metadata/_edit_lock_ = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+process_mode = 3
+layer = 100
+script = ExtResource("3_m37ap")
+
+[node name="Inventory" parent="UI" instance=ExtResource("2_vb13a")]
+unique_name_in_owner = true
+
+[node name="EntityInfoText" parent="UI" instance=ExtResource("6_eehix")]
+anchors_preset = 15
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 1.0
+grow_vertical = 2
+
+[node name="LookAtText" parent="UI" instance=ExtResource("6_2vnsa")]
+
+[node name="ItemPreviews" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="ThemeMusic" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+
+[node name="TakeSoundEffect" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("7_3pddl")
+
+[node name="InventorySoundEffect" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("7_o8ra2")
+volume_db = -15.0
+
+[node name="InteractSoundEffect" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_gebye")
+
+[connection signal="closed" from="UI/Inventory" to="." method="_on_inventory_closed"]
+[connection signal="opened" from="UI/Inventory" to="." method="_on_inventory_opened"]

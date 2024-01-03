@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Character" load_steps=2 format=3 uid="uid://djjf0befuhjss"]
+
+[ext_resource type="Script" path="res://resources/character.gd" id="1_ycbx2"]
+
+[resource]
+script = ExtResource("1_ycbx2")
+name = "explorer"
+dialogue_tree = {}
+look_at_text = "Umständliche Art, Fisch zu fangen."
+hover_text = "Angel-Mensch"

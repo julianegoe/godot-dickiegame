@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="InteractableResource" load_steps=2 format=3 uid="uid://dsd1likihuvg1"]
+
+[ext_resource type="Script" path="res://resources/interactable.gd" id="1_1mk8r"]
+
+[resource]
+script = ExtResource("1_1mk8r")
+name = "invisible_hill"
+frame_count = 0
+look_at_text = "Ein Hügel zum Verstecken."
+fail_interaction_text = "Das hat nicht geklappt."
+hover_text = "Hügel"
+is_interacted = false

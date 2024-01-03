@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="InteractableResource" load_steps=3 format=3 uid="uid://donbv5dy6lq0s"]
+
+[ext_resource type="Script" path="res://resources/interactable.gd" id="1_7t703"]
+[ext_resource type="Texture2D" uid="uid://beffuuqsywtwd" path="res://assets/objects/bed.png" id="2_pccfd"]
+
+[resource]
+script = ExtResource("1_7t703")
+name = "bed"
+frame_count = 0
+texture = ExtResource("2_pccfd")
+look_at_text = "Gemütlich."
+fail_interaction_text = "Das hat nicht geklappt."
+hover_text = "Schlafsack"
+is_interacted = false

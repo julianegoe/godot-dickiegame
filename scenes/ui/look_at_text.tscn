@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://cy8copom8w6kx"]
+
+[ext_resource type="Script" path="res://scenes/ui/look_at_text.gd" id="1_s37b3"]
+[ext_resource type="FontFile" uid="uid://028q5i0oh2j5" path="res://assets/fonts/VT323-Regular.ttf" id="2_ahv8w"]
+
+[node name="LookAtText" type="Control"]
+layout_mode = 3
+anchor_left = 0.05
+anchor_top = 0.2
+anchor_right = 0.05
+anchor_bottom = 0.2
+script = ExtResource("1_s37b3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.2
+anchor_right = 0.05
+anchor_bottom = 0.2
+offset_top = -20.0
+offset_right = 208.0
+offset_bottom = 20.0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("2_ahv8w")
+theme_override_font_sizes/font_size = 50
+text = "Das ist ein Test."
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

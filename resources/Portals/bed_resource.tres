@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PortalsResource" load_steps=2 format=3 uid="uid://beyl7skqxat00"]
+
+[ext_resource type="Script" path="res://resources/portals.gd" id="1_0dcci"]
+
+[resource]
+script = ExtResource("1_0dcci")
+name = "bed"
+look_at_text = "Gemütlich"
+hover_text = "Ein Bett"
+open_text = "Nur ein kurzes Nickerchen..."
+open_to = "res://dickiebird/scenes/dickiebird.tscn"
+is_open = true

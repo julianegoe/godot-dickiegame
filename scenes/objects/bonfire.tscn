@@ -1,0 +1,152 @@
+[gd_scene load_steps=25 format=3 uid="uid://cq7r23esrwi47"]
+
+[ext_resource type="Script" path="res://scenes/objects/bonfire.gd" id="1_1ekxh"]
+[ext_resource type="Texture2D" uid="uid://dwt06jb1wx6m8" path="res://assets/objects/bonfire.png" id="1_cnonp"]
+[ext_resource type="PackedScene" uid="uid://jw118e0dmrti" path="res://scenes/objects/entity.tscn" id="1_yt55u"]
+[ext_resource type="Resource" uid="uid://bndromcqxudl3" path="res://resources/Interactables/bonfire_resource.tres" id="2_u3ufr"]
+[ext_resource type="Resource" uid="uid://cvqbffps4jeer" path="res://resources/ActionItems/look_at.tres" id="4_i5rt4"]
+[ext_resource type="Script" path="res://resources/action_menu_resource.gd" id="5_ocqli"]
+[ext_resource type="Resource" uid="uid://b3vaa8jqblc3x" path="res://resources/ActionItems/interact.tres" id="7_6f1ay"]
+[ext_resource type="Texture2D" uid="uid://d1suuvdijidve" path="res://assets/particles/red_particle.png" id="8_ikujb"]
+[ext_resource type="Texture2D" uid="uid://bsfofhrtcg6ni" path="res://assets/particles/smoke.png" id="9_fsbwx"]
+[ext_resource type="AudioStream" uid="uid://dg60d4e1ooqxu" path="res://assets/audio/bonfire.ogg" id="10_6apig"]
+[ext_resource type="Script" path="res://audio/audioplayer_bonfire.gd" id="11_c7y7a"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ng3qv"]
+radius = 50.01
+
+[sub_resource type="Resource" id="Resource_rbffh"]
+script = ExtResource("5_ocqli")
+action_items = Array[Resource("res://resources/action_item.gd")]([ExtResource("4_i5rt4"), ExtResource("7_6f1ay")])
+
+[sub_resource type="Gradient" id="Gradient_mxqoo"]
+colors = PackedColorArray(0.539566, 0.539566, 5.77569e-07, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7duew"]
+gradient = SubResource("Gradient_mxqoo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nya61"]
+emission_shape = 3
+emission_box_extents = Vector3(50, 2, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, -98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 4.0
+color_ramp = SubResource("GradientTexture1D_7duew")
+turbulence_enabled = true
+turbulence_noise_speed_random = 5.1
+
+[sub_resource type="Gradient" id="Gradient_hxops"]
+colors = PackedColorArray(0.203922, 0.196078, 0.145098, 0.411765, 0.8, 0.780392, 0.709804, 0.419608)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_t31xe"]
+gradient = SubResource("Gradient_hxops")
+
+[sub_resource type="Curve" id="Curve_6kica"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.249614), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_it852"]
+curve = SubResource("Curve_6kica")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_bsyhc"]
+emission_shape = 3
+emission_box_extents = Vector3(32, 5, 1)
+particle_flag_disable_z = true
+gravity = Vector3(0, -98, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.5
+scale_max = 2.5
+scale_curve = SubResource("CurveTexture_it852")
+color_ramp = SubResource("GradientTexture1D_t31xe")
+turbulence_enabled = true
+turbulence_noise_scale = 5.0
+
+[sub_resource type="Animation" id="Animation_majo1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_s1erl"]
+resource_name = "fire_burning"
+length = 1.4
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ftcq6"]
+_data = {
+"RESET": SubResource("Animation_majo1"),
+"fire_burning": SubResource("Animation_s1erl")
+}
+
+[node name="Bonfire" instance=ExtResource("1_yt55u")]
+script = ExtResource("1_1ekxh")
+resource = ExtResource("2_u3ufr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_ng3qv")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(-1, -27)
+scale = Vector2(2, 2)
+texture = ExtResource("1_cnonp")
+hframes = 9
+frame = 1
+
+[node name="ActionMenu" parent="." index="2"]
+actions = SubResource("Resource_rbffh")
+metadata/_edit_lock_ = true
+
+[node name="Sparks" type="GPUParticles2D" parent="." index="3"]
+position = Vector2(0, 34)
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_nya61")
+texture = ExtResource("8_ikujb")
+lifetime = 3.5
+
+[node name="Smoke" type="GPUParticles2D" parent="." index="4"]
+position = Vector2(0, 38)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_bsyhc")
+texture = ExtResource("9_fsbwx")
+lifetime = 6.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="5"]
+libraries = {
+"": SubResource("AnimationLibrary_ftcq6")
+}
+
+[node name="CracklingFireSound" type="AudioStreamPlayer2D" parent="." index="6"]
+stream = ExtResource("10_6apig")
+volume_db = 5.0
+max_distance = 1000.0
+script = ExtResource("11_c7y7a")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

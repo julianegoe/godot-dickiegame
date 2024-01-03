@@ -1,0 +1,53 @@
+[gd_scene load_steps=13 format=3 uid="uid://d3wxk2vmirp4d"]
+
+[ext_resource type="PackedScene" uid="uid://jw118e0dmrti" path="res://scenes/objects/entity.tscn" id="1_aa5ps"]
+[ext_resource type="Script" path="res://scenes/objects/logs.gd" id="1_l5e16"]
+[ext_resource type="Resource" uid="uid://dtlhjcki7m81u" path="res://resources/Collectables/logs.tres" id="3_1oavd"]
+[ext_resource type="Shader" path="res://scenes/objects/shine.gdshader" id="5_877ex"]
+[ext_resource type="Texture2D" uid="uid://bg8i8bus2fdib" path="res://assets/objects/logs.png" id="5_tcowb"]
+[ext_resource type="Resource" uid="uid://cvqbffps4jeer" path="res://resources/ActionItems/look_at.tres" id="5_td2qy"]
+[ext_resource type="Resource" uid="uid://c5dq486hi53x4" path="res://resources/ActionItems/take.tres" id="6_2hfsa"]
+[ext_resource type="Script" path="res://resources/action_menu_resource.gd" id="7_b6ts7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fvq78"]
+size = Vector2(49, 25)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_62xcf"]
+shader = ExtResource("5_877ex")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/shine_progress = 0.0
+shader_parameter/shine_size = 0.1
+shader_parameter/shine_angle = 45.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x44vm"]
+shader = ExtResource("5_877ex")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/shine_progress = 0.0
+shader_parameter/shine_size = 0.1
+shader_parameter/shine_angle = 45.0
+
+[sub_resource type="Resource" id="Resource_qwmld"]
+script = ExtResource("7_b6ts7")
+action_items = Array[Resource("res://resources/action_item.gd")]([ExtResource("5_td2qy"), ExtResource("6_2hfsa")])
+
+[node name="Logs" groups=["Collectable"] instance=ExtResource("1_aa5ps")]
+script = ExtResource("1_l5e16")
+resource = ExtResource("3_1oavd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+position = Vector2(1.5, 2.5)
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_fvq78")
+
+[node name="Sprite2D" parent="." index="1"]
+material = SubResource("ShaderMaterial_62xcf")
+scale = Vector2(2, 2)
+texture = ExtResource("5_tcowb")
+hframes = 3
+frame = 2
+
+[node name="ActionMenu" parent="." index="2"]
+material = SubResource("ShaderMaterial_x44vm")
+actions = SubResource("Resource_qwmld")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

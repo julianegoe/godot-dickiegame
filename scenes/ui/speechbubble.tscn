@@ -1,0 +1,134 @@
+[gd_scene load_steps=8 format=3 uid="uid://c5nx8c218ff8g"]
+
+[ext_resource type="Texture2D" uid="uid://cltersbi6xohq" path="res://assets/ninepatch_dialogue.png" id="1_n8or5"]
+[ext_resource type="FontFile" uid="uid://028q5i0oh2j5" path="res://assets/fonts/VT323-Regular.ttf" id="2_1qjug"]
+[ext_resource type="Script" path="res://scenes/ui/speechbubble.gd" id="2_bwvs7"]
+[ext_resource type="PackedScene" uid="uid://dyqybte1t6lix" path="res://scenes/ui/next_button.tscn" id="4_dqjvs"]
+[ext_resource type="Script" path="res://scripts/dialogue_manager.gd" id="5_0sdfk"]
+[ext_resource type="Script" path="res://scenes/ui/next_button.gd" id="5_qqaau"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_o8gfs"]
+content_margin_left = 3.0
+content_margin_top = 3.0
+content_margin_right = 3.0
+content_margin_bottom = 5.0
+texture = ExtResource("1_n8or5")
+texture_margin_left = 15.0
+texture_margin_top = 15.0
+texture_margin_right = 15.0
+texture_margin_bottom = 15.0
+
+[node name="Speechbubble" type="Panel"]
+process_mode = 3
+light_mask = 2
+visibility_layer = 2
+clip_contents = true
+offset_right = 470.0
+offset_bottom = 227.0
+focus_neighbor_bottom = NodePath("NextButtonContainer/NextButton")
+focus_next = NodePath("NextButtonContainer/NextButton")
+theme_override_styles/panel = SubResource("StyleBoxTexture_o8gfs")
+script = ExtResource("2_bwvs7")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 9
+theme_override_constants/margin_top = 9
+theme_override_constants/margin_right = 9
+theme_override_constants/margin_bottom = 7
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="CharacterName" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.745098, 0.054902, 0.439216, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("2_1qjug")
+theme_override_font_sizes/font_size = 29
+text = "Shopkeeper"
+
+[node name="CharacterText" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("2_1qjug")
+theme_override_font_sizes/normal_font_size = 32
+text = "Hier ist ein Test Text. Und noch mehr Text. Wie viel passt hier hin bevor es ungemütlich wird."
+fit_content = true
+
+[node name="AnswerContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer/AnswerContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.235294, 0.235294, 0.235294, 1)
+theme_override_colors/font_hover_color = Color(0.235294, 0.235294, 0.235294, 1)
+theme_override_fonts/font = ExtResource("2_1qjug")
+theme_override_font_sizes/font_size = 29
+flat = true
+
+[node name="Button2" type="Button" parent="MarginContainer/VBoxContainer/AnswerContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.235294, 0.235294, 0.235294, 1)
+theme_override_colors/font_hover_color = Color(0.235294, 0.235294, 0.235294, 1)
+theme_override_fonts/font = ExtResource("2_1qjug")
+theme_override_font_sizes/font_size = 29
+flat = true
+
+[node name="Button3" type="Button" parent="MarginContainer/VBoxContainer/AnswerContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.235294, 0.235294, 0.235294, 1)
+theme_override_colors/font_hover_color = Color(0.235294, 0.235294, 0.235294, 1)
+theme_override_fonts/font = ExtResource("2_1qjug")
+theme_override_font_sizes/font_size = 29
+flat = true
+
+[node name="NextButtonContainer" type="Control" parent="."]
+layout_mode = 1
+anchor_left = 0.882
+anchor_top = 0.755
+anchor_right = 0.973
+anchor_bottom = 0.936
+offset_left = -0.0800171
+offset_top = 0.0599823
+offset_right = -20.12
+offset_bottom = -16.968
+grow_horizontal = 0
+grow_vertical = 0
+scale = Vector2(2, 2)
+
+[node name="NextButton" parent="NextButtonContainer" instance=ExtResource("4_dqjvs")]
+unique_name_in_owner = true
+layout_mode = 0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_top = 0.0
+offset_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
+script = ExtResource("5_qqaau")
+
+[node name="DialogueManager" type="Node" parent="." node_paths=PackedStringArray("characterNameLabel", "textLabel", "choiceButtons")]
+script = ExtResource("5_0sdfk")
+characterNameLabel = NodePath("../MarginContainer/VBoxContainer/CharacterName")
+textLabel = NodePath("../MarginContainer/VBoxContainer/CharacterText")
+choiceButtons = [NodePath("../MarginContainer/VBoxContainer/AnswerContainer/Button"), NodePath("../MarginContainer/VBoxContainer/AnswerContainer/Button2"), NodePath("../MarginContainer/VBoxContainer/AnswerContainer/Button3")]
+
+[connection signal="item_rect_changed" from="MarginContainer" to="." method="_on_margin_container_item_rect_changed"]
+[connection signal="pressed" from="NextButtonContainer/NextButton" to="." method="_on_next_button_pressed"]
+[connection signal="choiceSelected" from="DialogueManager" to="." method="_on_dialogue_manager_choice_selected"]
+[connection signal="textComplete" from="DialogueManager" to="." method="_on_dialogue_manager_text_complete"]
+[connection signal="uiClose" from="DialogueManager" to="." method="_on_dialogue_manager_ui_close"]

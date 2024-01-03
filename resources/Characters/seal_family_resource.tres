@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CharacterResource" load_steps=2 format=3 uid="uid://gy0gy7q03m2h"]
+
+[ext_resource type="Script" path="res://resources/character.gd" id="1_kbw7e"]
+
+[resource]
+script = ExtResource("1_kbw7e")
+name = "seal_family"
+look_at_text = "Da sind sie!"
+hover_text = "Meine Gang"

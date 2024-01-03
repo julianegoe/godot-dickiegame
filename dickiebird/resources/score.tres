@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="Score" load_steps=2 format=3 uid="uid://bne4oijxjrbsa"]
+
+[ext_resource type="Script" path="res://dickiebird/scripts/score_resource.gd" id="1_7ludu"]
+
+[resource]
+script = ExtResource("1_7ludu")
+count = 0

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CollectableItem" load_steps=3 format=3 uid="uid://dtlhjcki7m81u"]
+
+[ext_resource type="Script" path="res://resources/collectable_item.gd" id="1_mwd4h"]
+[ext_resource type="Texture2D" uid="uid://bg8i8bus2fdib" path="res://assets/objects/logs.png" id="2_yuewg"]
+
+[resource]
+script = ExtResource("1_mwd4h")
+name = "logs"
+frame_count = 3
+inventory_amount = 0
+world_amount = 3
+texture = ExtResource("2_yuewg")
+take_text = "Eins kann ich ja mal nehmen."
+look_at_text = "Cholz für Feuer"
+hover_text = "Holz"

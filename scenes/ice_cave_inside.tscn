@@ -1,0 +1,195 @@
+[gd_scene load_steps=20 format=3 uid="uid://cnjxwc8ndbyue"]
+
+[ext_resource type="PackedScene" uid="uid://c34txb57dxkrr" path="res://scenes/global_level.tscn" id="1_ge3pg"]
+[ext_resource type="Script" path="res://scenes/ice_cave_inside.gd" id="2_8eole"]
+[ext_resource type="Texture2D" uid="uid://c557j4iuokipa" path="res://assets/level_3_background/inside_cave_background.png" id="2_jpgqx"]
+[ext_resource type="Texture2D" uid="uid://dyfvvhvri7r4t" path="res://assets/level_3_background/inside_cave_middleground.png" id="3_pong2"]
+[ext_resource type="Texture2D" uid="uid://da8qdvh1fsu0l" path="res://assets/level_3_background/cave_inside_foreground.png" id="4_p7jr7"]
+[ext_resource type="PackedScene" uid="uid://cfai5mwekvajc" path="res://scenes/characters/polar_bear.tscn" id="5_e6c4g"]
+[ext_resource type="PackedScene" uid="uid://doqurgn77panp" path="res://scenes/objects/cave_exit.tscn" id="5_r6yhe"]
+[ext_resource type="Resource" uid="uid://bx63a2gqoykl0" path="res://resources/Characters/polar_bear_resource.tres" id="6_cbmxp"]
+[ext_resource type="PackedScene" uid="uid://b0eep1g32qwnl" path="res://scenes/characters/seal_family.tscn" id="8_ey4sc"]
+[ext_resource type="PackedScene" uid="uid://cyj3eq6d0oe" path="res://scenes/objects/invisible_hill.tscn" id="9_abip5"]
+[ext_resource type="Texture2D" uid="uid://b1ul88fpb80qh" path="res://assets/level_3_background/cave_inside_foreground_n.png" id="10_fty68"]
+[ext_resource type="Texture2D" uid="uid://bf4vhbmmarbwu" path="res://assets/lights/circle.png" id="11_h1mar"]
+[ext_resource type="AudioStream" uid="uid://bx5rj5ypi75r" path="res://audio/Dickie-Adventure-Outro-Strokes.ogg" id="13_wdy2o"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_rtdgs"]
+diffuse_texture = ExtResource("4_p7jr7")
+normal_texture = ExtResource("10_fty68")
+texture_filter = 1
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_1o8u5"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_x13ut"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l8334"]
+size = Vector2(66, 630)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xlbb"]
+size = Vector2(64.5, 598.5)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_coopj"]
+radius = 30.0
+height = 86.0
+
+[node name="IceCave" instance=ExtResource("1_ge3pg")]
+script = ExtResource("2_8eole")
+
+[node name="IceCaveBackground" type="ParallaxBackground" parent="." index="0"]
+layer = -10
+
+[node name="Background" type="ParallaxLayer" parent="IceCaveBackground" index="0"]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(1200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="IceCaveBackground/Background" index="0"]
+show_behind_parent = true
+scale = Vector2(3, 2.9875)
+texture = ExtResource("2_jpgqx")
+centered = false
+
+[node name="Middleground" type="ParallaxLayer" parent="IceCaveBackground" index="1"]
+show_behind_parent = true
+motion_scale = Vector2(0.8, 0.8)
+motion_mirroring = Vector2(1200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="IceCaveBackground/Middleground" index="0"]
+scale = Vector2(3, 3)
+texture = ExtResource("3_pong2")
+centered = false
+
+[node name="Portals" type="Node2D" parent="." index="1"]
+
+[node name="CaveExit" parent="Portals" index="0" instance=ExtResource("5_r6yhe")]
+position = Vector2(0, 285)
+
+[node name="Characters" type="Node2D" parent="." index="2"]
+
+[node name="PolarBear" parent="Characters" index="0" instance=ExtResource("5_e6c4g")]
+position = Vector2(3139, 468)
+resource = ExtResource("6_cbmxp")
+
+[node name="SealFamily" parent="Characters" index="1" instance=ExtResource("8_ey4sc")]
+light_mask = 2
+visibility_layer = 2
+position = Vector2(5085, 515)
+
+[node name="Dickie" parent="." index="3"]
+visibility_layer = 2
+position = Vector2(156, 564)
+
+[node name="Camera2D" type="Camera2D" parent="Dickie" index="2"]
+offset = Vector2(0, -200)
+zoom = Vector2(1.05, 1.05)
+limit_left = 0
+limit_right = 3600
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+drag_horizontal_enabled = true
+drag_horizontal_offset = 0.1
+
+[node name="IceCaveForeground" type="ParallaxBackground" parent="." index="4"]
+layer = 10
+
+[node name="Foreground" type="ParallaxLayer" parent="IceCaveForeground" index="0"]
+top_level = true
+motion_mirroring = Vector2(1200, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="IceCaveForeground/Foreground" index="0"]
+scale = Vector2(3, 3)
+texture = SubResource("CanvasTexture_rtdgs")
+centered = false
+
+[node name="WorldBounds" type="Node2D" parent="." index="5"]
+
+[node name="Left" type="StaticBody2D" parent="WorldBounds" index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds/Left" index="0"]
+position = Vector2(20, 0)
+shape = SubResource("WorldBoundaryShape2D_1o8u5")
+
+[node name="Right" type="StaticBody2D" parent="WorldBounds" index="1"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds/Right" index="0"]
+position = Vector2(2900, 0)
+shape = SubResource("WorldBoundaryShape2D_x13ut")
+
+[node name="DangerZone" type="Area2D" parent="WorldBounds" index="2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds/DangerZone" index="0"]
+position = Vector2(2860, 317)
+shape = SubResource("RectangleShape2D_l8334")
+
+[node name="HomeZone" type="Area2D" parent="WorldBounds" index="3"]
+position = Vector2(4400, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds/HomeZone" index="0"]
+position = Vector2(318.75, 317)
+shape = SubResource("RectangleShape2D_5xlbb")
+
+[node name="Interactables" type="Node2D" parent="." index="6"]
+
+[node name="InvisibleHill" parent="Interactables" index="0" instance=ExtResource("9_abip5")]
+position = Vector2(2639, 617)
+
+[node name="Home" type="Area2D" parent="Interactables" index="1"]
+position = Vector2(4000, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Home" index="0"]
+position = Vector2(1182, 585)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_coopj")
+
+[node name="Darkness" type="DirectionalLight2D" parent="." index="7"]
+z_index = 100
+scale = Vector2(3, 2.9875)
+color = Color(0, 0, 0.101961, 1)
+energy = 0.8
+blend_mode = 2
+range_z_max = 0
+range_layer_min = -10
+range_layer_max = 10
+range_item_cull_mask = 2
+
+[node name="UI" parent="." index="8" groups=["UI"]]
+layer = 101
+
+[node name="Inventory" parent="UI" index="0"]
+light_mask = 2
+visibility_layer = 2
+
+[node name="EntityInfoText" parent="UI" index="1"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+grow_vertical = 0
+
+[node name="CaveLight" type="PointLight2D" parent="." index="10"]
+position = Vector2(4991, 403)
+scale = Vector2(5.1875, 4.4375)
+energy = 2.0
+range_layer_min = -10
+range_layer_max = 10
+texture = ExtResource("11_h1mar")
+texture_scale = 0.3
+
+[node name="CaveLight2" type="PointLight2D" parent="." index="11"]
+position = Vector2(80.9999, 86)
+scale = Vector2(5.1875, 4.4375)
+range_layer_min = -10
+range_layer_max = 10
+texture = ExtResource("11_h1mar")
+offset = Vector2(0, -200)
+
+[node name="HomeMusic" type="AudioStreamPlayer2D" parent="." index="13"]
+position = Vector2(5085, 514)
+stream = ExtResource("13_wdy2o")
+
+[connection signal="body_entered" from="WorldBounds/DangerZone" to="." method="_on_danger_zone_body_entered"]
+[connection signal="body_entered" from="WorldBounds/HomeZone" to="." method="_on_home_zone_body_entered"]
+[connection signal="body_entered" from="Interactables/Home" to="." method="_on_home_body_entered"]
+[connection signal="finished" from="ThemeMusic" to="." method="_on_theme_music_finished"]

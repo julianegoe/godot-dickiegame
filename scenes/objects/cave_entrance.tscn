@@ -1,0 +1,34 @@
+[gd_scene load_steps=10 format=3 uid="uid://cvbyu6kbytgvv"]
+
+[ext_resource type="PackedScene" uid="uid://jw118e0dmrti" path="res://scenes/objects/entity.tscn" id="1_p1ti6"]
+[ext_resource type="Texture2D" uid="uid://cs8ijq01upqfx" path="res://assets/level1_background/cave_entry.png" id="2_bjbup"]
+[ext_resource type="Script" path="res://scenes/objects/cave_entrance.gd" id="2_gl6ni"]
+[ext_resource type="Resource" uid="uid://cvqbffps4jeer" path="res://resources/ActionItems/look_at.tres" id="3_jf6go"]
+[ext_resource type="Resource" uid="uid://c58jqex8qvr0p" path="res://resources/Portals/cave_entrance_resource.tres" id="3_n7rbr"]
+[ext_resource type="Resource" uid="uid://c80fmhicnmui" path="res://resources/ActionItems/open.tres" id="4_vjqum"]
+[ext_resource type="Script" path="res://resources/action_menu_resource.gd" id="5_ak2k7"]
+
+[sub_resource type="Resource" id="Resource_751uj"]
+script = ExtResource("5_ak2k7")
+action_items = Array[Resource("res://resources/action_item.gd")]([ExtResource("3_jf6go"), ExtResource("4_vjqum")])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cpedc"]
+size = Vector2(272, 712)
+
+[node name="CaveEntrance" instance=ExtResource("1_p1ti6")]
+script = ExtResource("2_gl6ni")
+resource = ExtResource("3_n7rbr")
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(3.5625, 3.5625)
+texture = ExtResource("2_bjbup")
+centered = false
+
+[node name="ActionMenu" parent="." index="1"]
+actions = SubResource("Resource_751uj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+position = Vector2(60, 359)
+shape = SubResource("RectangleShape2D_cpedc")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

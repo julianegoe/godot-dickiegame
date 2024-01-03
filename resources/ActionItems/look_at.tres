@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="ActionItem" load_steps=3 format=3 uid="uid://cvqbffps4jeer"]
+
+[ext_resource type="Script" path="res://resources/action_item.gd" id="1_eu6x7"]
+[ext_resource type="Texture2D" uid="uid://28jvrypcmnfm" path="res://assets/ui/actions.png" id="2_tu5jj"]
+
+[resource]
+script = ExtResource("1_eu6x7")
+spritesheet_texture = ExtResource("2_tu5jj")
+type = 0

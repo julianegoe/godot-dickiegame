@@ -1,0 +1,43 @@
+[gd_scene load_steps=11 format=3 uid="uid://dwslxtb0b8ny3"]
+
+[ext_resource type="PackedScene" uid="uid://jw118e0dmrti" path="res://scenes/objects/entity.tscn" id="1_eq1v1"]
+[ext_resource type="Script" path="res://Entity.gd" id="2_nygsd"]
+[ext_resource type="Script" path="res://resources/portals.gd" id="3_0nm7l"]
+[ext_resource type="Texture2D" uid="uid://bvnneyv6ykwkx" path="res://assets/objects/diary.png" id="3_2kue0"]
+[ext_resource type="Resource" uid="uid://cvqbffps4jeer" path="res://resources/ActionItems/look_at.tres" id="4_unpyg"]
+[ext_resource type="Resource" uid="uid://c80fmhicnmui" path="res://resources/ActionItems/open.tres" id="5_khxrn"]
+[ext_resource type="Script" path="res://resources/action_menu_resource.gd" id="6_54al2"]
+[ext_resource type="PackedScene" uid="uid://dd6pav8djr88p" path="res://scenes/objects/logbook.tscn" id="8_cybcu"]
+
+[sub_resource type="Resource" id="Resource_ba6sq"]
+script = ExtResource("3_0nm7l")
+name = "Logbuch"
+look_at_text = "Isch bin neugierisch"
+hover_text = "Logbuch"
+open_text = "Mal kurz reinlesen"
+open_to = ""
+is_open = true
+
+[sub_resource type="Resource" id="Resource_4r1rj"]
+script = ExtResource("6_54al2")
+action_items = Array[Resource("res://resources/action_item.gd")]([ExtResource("4_unpyg"), ExtResource("5_khxrn")])
+
+[node name="Diary" instance=ExtResource("1_eq1v1")]
+script = ExtResource("2_nygsd")
+resource = SubResource("Resource_ba6sq")
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(2, 2)
+texture = ExtResource("3_2kue0")
+
+[node name="ActionMenu" parent="." index="1"]
+actions = SubResource("Resource_4r1rj")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." index="2"]
+scale = Vector2(2, 2)
+polygon = PackedVector2Array(-26.5, -0.5, 9, -18, 26, 5, -11.5, 20.5)
+
+[node name="Logbook" parent="." index="3" instance=ExtResource("8_cybcu")]
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="closeBook" from="Logbook" to="." method="_on_logbook_close_book"]

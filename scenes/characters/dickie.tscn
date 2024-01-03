@@ -1,0 +1,140 @@
+[gd_scene load_steps=13 format=3 uid="uid://xc6y4e4g4hsq"]
+
+[ext_resource type="Script" path="res://scenes/characters/dickie.gd" id="1_44rdt"]
+[ext_resource type="PackedScene" uid="uid://c5nx8c218ff8g" path="res://scenes/ui/speechbubble.tscn" id="4_wct6m"]
+[ext_resource type="Resource" uid="uid://7buae523trat" path="res://resources/Characters/dickie_resource.tres" id="5_ikkdq"]
+[ext_resource type="Texture2D" uid="uid://dot73b342grvg" path="res://assets/dickie/dickie_move1_d.png" id="6_xidjb"]
+[ext_resource type="Texture2D" uid="uid://bj1pebvoo12iq" path="res://assets/dickie/dickie_move1_n.png" id="7_hg7tw"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_b6pvv"]
+radius = 12.6667
+height = 28.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_cn08d"]
+diffuse_texture = ExtResource("6_xidjb")
+normal_texture = ExtResource("7_hg7tw")
+
+[sub_resource type="Animation" id="Animation_4wxf1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_j2biu"]
+resource_name = "jump_back"
+length = 0.7
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-20, -5), Vector2(-40, -15), Vector2(-60, -20), Vector2(-80, -15), Vector2(-100, -10), Vector2(-120, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-20, -5), Vector2(-40, -15), Vector2(-60, -20), Vector2(-80, -15), Vector2(-100, -10), Vector2(-120, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_2jc3g"]
+resource_name = "walk"
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_suj65"]
+resource_name = "walk_to_family"
+length = 1.2
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 100.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_eeit1"]
+_data = {
+"RESET": SubResource("Animation_4wxf1"),
+"jump_back": SubResource("Animation_j2biu"),
+"walk": SubResource("Animation_2jc3g"),
+"walk_to_family": SubResource("Animation_suj65")
+}
+
+[node name="Dickie" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+script = ExtResource("1_44rdt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_b6pvv")
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_cn08d")
+hframes = 4
+
+[node name="ControllerContainer" type="Node" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_eeit1")
+}
+
+[node name="Speechbubble" parent="." instance=ExtResource("4_wct6m")]
+offset_left = -103.333
+offset_top = -51.3333
+offset_right = 336.667
+offset_bottom = 136.667
+scale = Vector2(0.2, 0.2)
+dialogue_resource = ExtResource("5_ikkdq")

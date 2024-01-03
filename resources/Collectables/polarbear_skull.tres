@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CollectableItem" load_steps=3 format=3 uid="uid://cp2wb0yr2bbca"]
+
+[ext_resource type="Script" path="res://resources/collectable_item.gd" id="1_st4sh"]
+[ext_resource type="Texture2D" uid="uid://34bifv2igjlc" path="res://assets/objects/polarbear_skull.png" id="2_bdi6c"]
+
+[resource]
+script = ExtResource("1_st4sh")
+name = "polarbear_skull"
+frame_count = 1
+inventory_amount = 0
+world_amount = 1
+texture = ExtResource("2_bdi6c")
+take_text = "Meins."
+look_at_text = "So kannst du mich nict mehr fressen, chöchöchö."
+hover_text = "Eisbär-Schädel"

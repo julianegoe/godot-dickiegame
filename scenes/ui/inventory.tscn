@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3 uid="uid://cddt1gj2w7mwd"]
+
+[ext_resource type="Texture2D" uid="uid://dnblc7or8lvof" path="res://assets/ui/nineslice.png" id="1_6gaud"]
+[ext_resource type="Script" path="res://scenes/ui/inventory.gd" id="1_6tyef"]
+[ext_resource type="PackedScene" uid="uid://dnnxpmfwxbxei" path="res://scenes/ui/slot.tscn" id="2_jh88x"]
+
+[node name="Inventory" type="Control"]
+process_mode = 3
+custom_minimum_size = Vector2(636, 309)
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -318.0
+offset_top = -309.0
+offset_right = 318.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_6tyef")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+custom_minimum_size = Vector2(636, 309)
+layout_mode = 0
+offset_right = 636.0
+offset_bottom = 309.0
+texture = ExtResource("1_6gaud")
+
+[node name="GridContainer" type="GridContainer" parent="NinePatchRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.0
+offset_top = -98.0
+offset_right = 248.0
+offset_bottom = 98.0
+grow_horizontal = 2
+grow_vertical = 2
+columns = 5
+
+[node name="Slot" parent="NinePatchRect/GridContainer" groups=["Slots"] instance=ExtResource("2_jh88x")]
+layout_mode = 2
+
+[node name="Slot2" parent="NinePatchRect/GridContainer" groups=["Slots"] instance=ExtResource("2_jh88x")]
+layout_mode = 2
+
+[node name="Slot3" parent="NinePatchRect/GridContainer" groups=["Slots"] instance=ExtResource("2_jh88x")]
+layout_mode = 2
+
+[node name="Slot4" parent="NinePatchRect/GridContainer" groups=["Slots"] instance=ExtResource("2_jh88x")]
+layout_mode = 2
+
+[node name="Slot5" parent="NinePatchRect/GridContainer" groups=["Slots"] instance=ExtResource("2_jh88x")]
+layout_mode = 2
+
+[node name="Slot6" parent="NinePatchRect/GridContainer" groups=["Slots"] instance=ExtResource("2_jh88x")]
+layout_mode = 2
+
+[node name="Slot7" parent="NinePatchRect/GridContainer" groups=["Slots"] instance=ExtResource("2_jh88x")]
+layout_mode = 2
+
+[node name="Slot8" parent="NinePatchRect/GridContainer" groups=["Slots"] instance=ExtResource("2_jh88x")]
+layout_mode = 2
+
+[node name="Slot9" parent="NinePatchRect/GridContainer" groups=["Slots"] instance=ExtResource("2_jh88x")]
+layout_mode = 2
+
+[node name="Slot10" parent="NinePatchRect/GridContainer" groups=["Slots"] instance=ExtResource("2_jh88x")]
+layout_mode = 2

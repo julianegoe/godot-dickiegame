@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="CollectableItem" load_steps=3 format=3 uid="uid://dganycw4jekc6"]
+
+[ext_resource type="Script" path="res://resources/collectable_item.gd" id="1_3iqqd"]
+[ext_resource type="Texture2D" uid="uid://cdmr0xg7mrfd4" path="res://assets/objects/lamp.png" id="2_kw7qd"]
+
+[resource]
+script = ExtResource("1_3iqqd")
+name = "lamp"
+frame_count = 0
+inventory_amount = 0
+world_amount = 1
+texture = ExtResource("2_kw7qd")
+take_text = "er hat gesagt, ich darf alles nehmen."
+look_at_text = "Lieber nicht so direkt reingucken."
+hover_text = "Öllampe"

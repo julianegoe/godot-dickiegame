@@ -1,0 +1,91 @@
+[gd_scene load_steps=16 format=3 uid="uid://b0eep1g32qwnl"]
+
+[ext_resource type="PackedScene" uid="uid://jw118e0dmrti" path="res://scenes/objects/entity.tscn" id="1_y63pt"]
+[ext_resource type="Script" path="res://scenes/characters/seal_family.gd" id="2_hg54f"]
+[ext_resource type="Texture2D" uid="uid://dk3i4b6plmxye" path="res://assets/characters/seal_family.png" id="2_kwhrv"]
+[ext_resource type="Resource" uid="uid://c2to52f80ig3v" path="res://resources/ActionItems/talk.tres" id="3_71cfl"]
+[ext_resource type="Script" path="res://resources/character.gd" id="3_l61of"]
+[ext_resource type="Resource" uid="uid://cvqbffps4jeer" path="res://resources/ActionItems/look_at.tres" id="4_dopb5"]
+[ext_resource type="Texture2D" uid="uid://b23xtwmdbltes" path="res://assets/characters/seal_family_n.png" id="5_6crms"]
+[ext_resource type="Script" path="res://resources/action_menu_resource.gd" id="5_gm5qw"]
+[ext_resource type="PackedScene" uid="uid://c5nx8c218ff8g" path="res://scenes/ui/speechbubble.tscn" id="9_5d7of"]
+
+[sub_resource type="Resource" id="Resource_66v63"]
+script = ExtResource("3_l61of")
+name = "seal_family"
+look_at_text = "Da sind sie!"
+hover_text = "Meine Gang"
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vbyxj"]
+radius = 57.0
+height = 314.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ijf84"]
+diffuse_texture = ExtResource("2_kwhrv")
+normal_texture = ExtResource("5_6crms")
+
+[sub_resource type="Resource" id="Resource_dqk7r"]
+script = ExtResource("5_gm5qw")
+action_items = Array[Resource("res://resources/action_item.gd")]([ExtResource("4_dopb5"), ExtResource("3_71cfl")])
+
+[sub_resource type="Animation" id="Animation_op4nx"]
+resource_name = "move"
+length = 2.5
+loop_mode = 1
+step = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.8, 1.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ooiq1"]
+_data = {
+"move": SubResource("Animation_op4nx")
+}
+
+[node name="SealFamily" instance=ExtResource("1_y63pt")]
+script = ExtResource("2_hg54f")
+resource = SubResource("Resource_66v63")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+position = Vector2(0, -25)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_vbyxj")
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(3, 3)
+texture = SubResource("CanvasTexture_ijf84")
+hframes = 3
+frame = 1
+
+[node name="ActionMenu" parent="." index="2"]
+actions = SubResource("Resource_dqk7r")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_ooiq1")
+}
+autoplay = "move"
+
+[node name="Ui" type="CanvasLayer" parent="." index="4"]
+layer = 100
+follow_viewport_enabled = true
+
+[node name="Node2D" type="Node2D" parent="Ui" index="0"]
+position = Vector2(-450, -350)
+
+[node name="Speechbubble" parent="Ui/Node2D" index="0" instance=ExtResource("9_5d7of")]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="." index="5"]
+position = Vector2(-450, -350)
+remote_path = NodePath("../Ui/Node2D")
+update_rotation = false
+update_scale = false

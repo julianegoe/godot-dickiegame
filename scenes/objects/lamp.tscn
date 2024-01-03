@@ -1,0 +1,48 @@
+[gd_scene load_steps=12 format=3 uid="uid://j7gwbq1ewtsv"]
+
+[ext_resource type="PackedScene" uid="uid://jw118e0dmrti" path="res://scenes/objects/entity.tscn" id="1_6ldfm"]
+[ext_resource type="Script" path="res://scenes/objects/lamp.gd" id="2_h2ry7"]
+[ext_resource type="Resource" uid="uid://dganycw4jekc6" path="res://resources/Collectables/lamp_resource.tres" id="2_tc118"]
+[ext_resource type="Texture2D" uid="uid://cdmr0xg7mrfd4" path="res://assets/objects/lamp.png" id="2_tqvqu"]
+[ext_resource type="Resource" uid="uid://cvqbffps4jeer" path="res://resources/ActionItems/look_at.tres" id="3_li8hb"]
+[ext_resource type="Texture2D" uid="uid://6rkyc883t02s" path="res://assets/lights/pointlight.png" id="3_nwwnb"]
+[ext_resource type="Resource" uid="uid://c5dq486hi53x4" path="res://resources/ActionItems/take.tres" id="4_pxg7x"]
+[ext_resource type="Script" path="res://resources/action_menu_resource.gd" id="5_v8rgm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fecni"]
+size = Vector2(68, 153)
+
+[sub_resource type="Resource" id="Resource_yuvbi"]
+script = ExtResource("5_v8rgm")
+action_items = Array[Resource("res://resources/action_item.gd")]([ExtResource("3_li8hb"), ExtResource("4_pxg7x")])
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_a6qtc"]
+polygon = PackedVector2Array(-50, 52, -36, 57, 39, 58, 51, 52, 287, 57, 285, 88, -348, 82, -346, 52)
+
+[node name="Lamp" groups=["Collectable"] instance=ExtResource("1_6ldfm")]
+script = ExtResource("2_h2ry7")
+resource = ExtResource("2_tc118")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+position = Vector2(-1, -0.5)
+shape = SubResource("RectangleShape2D_fecni")
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_tqvqu")
+
+[node name="ActionMenu" parent="." index="2"]
+actions = SubResource("Resource_yuvbi")
+
+[node name="PointLight2D" type="PointLight2D" parent="." index="3"]
+position = Vector2(0, 12)
+color = Color(1, 0.717647, 0.34902, 1)
+energy = 1.5
+shadow_enabled = true
+texture = ExtResource("3_nwwnb")
+texture_scale = 12.0
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="4"]
+occluder = SubResource("OccluderPolygon2D_a6qtc")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

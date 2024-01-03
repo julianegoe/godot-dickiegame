@@ -1,0 +1,79 @@
+[gd_scene load_steps=12 format=3 uid="uid://i7b3o38dvobq"]
+
+[ext_resource type="PackedScene" uid="uid://c34txb57dxkrr" path="res://scenes/global_level.tscn" id="1_mkv6a"]
+[ext_resource type="PackedScene" uid="uid://6qcxq7i3vo7s" path="res://scenes/outside_background.tscn" id="2_8p42q"]
+[ext_resource type="Script" path="res://scenes/outside.gd" id="2_isy20"]
+[ext_resource type="PackedScene" uid="uid://dm85h0fbm4ru0" path="res://scenes/objects/tent.tscn" id="3_5pjmg"]
+[ext_resource type="PackedScene" uid="uid://cq7r23esrwi47" path="res://scenes/objects/bonfire.tscn" id="3_nd6eu"]
+[ext_resource type="PackedScene" uid="uid://cvbyu6kbytgvv" path="res://scenes/objects/cave_entrance.tscn" id="5_j5fpd"]
+[ext_resource type="PackedScene" uid="uid://dwslxtb0b8ny3" path="res://scenes/objects/diary.tscn" id="5_y82xc"]
+[ext_resource type="PackedScene" uid="uid://cnado42hs8mqp" path="res://scenes/characters/explorer.tscn" id="6_ym2df"]
+[ext_resource type="PackedScene" uid="uid://bw8uyyulfbgci" path="res://scenes/effects/snowfall.tscn" id="7_4q2uv"]
+[ext_resource type="PackedScene" uid="uid://d3wxk2vmirp4d" path="res://scenes/objects/logs.tscn" id="8_koknd"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_ydh8o"]
+normal = Vector2(-1, 0)
+
+[node name="outside" instance=ExtResource("1_mkv6a")]
+script = ExtResource("2_isy20")
+metadata/_edit_vertical_guides_ = [3544.0]
+
+[node name="OutSideBackground" parent="." index="0" instance=ExtResource("2_8p42q")]
+
+[node name="Portals" type="Node2D" parent="." index="1"]
+
+[node name="Tent" parent="Portals" index="0" groups=["Portal"] instance=ExtResource("3_5pjmg")]
+position = Vector2(2348, 502)
+
+[node name="CaveEntrance" parent="Portals" index="1" groups=["Portal"] instance=ExtResource("5_j5fpd")]
+position = Vector2(3430, -57)
+
+[node name="Interactables" type="Node2D" parent="." index="2"]
+
+[node name="Bonfire" parent="Interactables" index="0" instance=ExtResource("3_nd6eu")]
+position = Vector2(2643, 518)
+
+[node name="Diary" parent="Interactables" index="1" instance=ExtResource("5_y82xc")]
+position = Vector2(2183, 570)
+
+[node name="Collectables" type="Node2D" parent="." index="3"]
+
+[node name="Logs" parent="Collectables" index="0" instance=ExtResource("8_koknd")]
+position = Vector2(2491, 550)
+
+[node name="Characters" type="Node2D" parent="." index="4"]
+
+[node name="Explorer" parent="Characters" index="0" groups=["Character"] instance=ExtResource("6_ym2df")]
+position = Vector2(2030, 492)
+
+[node name="Dickie" parent="." index="5"]
+position = Vector2(584, 564)
+
+[node name="Camera2D" type="Camera2D" parent="Dickie" index="2"]
+offset = Vector2(0, -200)
+zoom = Vector2(1.05, 1.05)
+limit_left = 0
+limit_right = 3544
+position_smoothing_enabled = true
+position_smoothing_speed = 1.0
+
+[node name="WorldBounds" type="Node2D" parent="." index="6"]
+
+[node name="Right" type="StaticBody2D" parent="WorldBounds" index="0"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldBounds/Right" index="0"]
+position = Vector2(3480, 0)
+shape = SubResource("WorldBoundaryShape2D_ydh8o")
+
+[node name="Snowfall" parent="." index="7" instance=ExtResource("7_4q2uv")]
+scale = Vector2(0.333333, 0.333333)
+transform = Transform2D(0.333333, 0, 0, 0.333333, 0, 0)
+
+[node name="EntityInfoText" parent="UI" index="1"]
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+grow_vertical = 0
+
+[connection signal="finished" from="ThemeMusic" to="." method="_on_theme_music_finished"]

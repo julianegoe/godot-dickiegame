@@ -1,0 +1,42 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtop0060bhp2d"]
+
+[ext_resource type="Script" path="res://scenes/ui/entity_info_text.gd" id="1_kcavq"]
+[ext_resource type="FontFile" uid="uid://028q5i0oh2j5" path="res://assets/fonts/VT323-Regular.ttf" id="1_s7244"]
+
+[node name="EntityInfoText" type="Control"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 0
+script = ExtResource("1_kcavq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -60.0
+offset_top = -73.0
+offset_right = 60.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Label" type="Label" parent="HBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 5
+theme_override_fonts/font = ExtResource("1_s7244")
+theme_override_font_sizes/font_size = 50

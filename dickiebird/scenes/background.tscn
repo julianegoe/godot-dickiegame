@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://c6ikve3c6ibpa"]
+
+[ext_resource type="Script" path="res://dickiebird/scenes/background.gd" id="1_7gmcg"]
+[ext_resource type="Texture2D" uid="uid://ybrruh4krudy" path="res://dickiebird/assets/sky.png" id="1_fp5yx"]
+[ext_resource type="Texture2D" uid="uid://y7isx46v6yfw" path="res://dickiebird/assets/mountains.png" id="2_slm67"]
+[ext_resource type="Texture2D" uid="uid://ck062yrfwkh7" path="res://dickiebird/assets/ground.png" id="3_34jhx"]
+[ext_resource type="Texture2D" uid="uid://dtoa78bywfiei" path="res://dickiebird/assets/middleground.png" id="3_pb3n0"]
+[ext_resource type="Texture2D" uid="uid://jbdmaj14uxc8" path="res://dickiebird/assets/water.png" id="5_pvknu"]
+
+[node name="Background" type="ParallaxBackground"]
+script = ExtResource("1_7gmcg")
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.6, 0.6)
+motion_mirroring = Vector2(400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer"]
+texture = ExtResource("1_fp5yx")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.7, 0.7)
+motion_mirroring = Vector2(400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer2"]
+texture = ExtResource("2_slm67")
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer4"]
+texture = ExtResource("3_34jhx")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.9, 0.9)
+motion_mirroring = Vector2(400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer3"]
+texture = ExtResource("3_pb3n0")
+centered = false
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(1.1, 1.1)
+motion_mirroring = Vector2(400, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxLayer5"]
+texture = ExtResource("5_pvknu")
+centered = false

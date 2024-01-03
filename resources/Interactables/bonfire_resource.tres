@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="InteractableResource" load_steps=3 format=3 uid="uid://bndromcqxudl3"]
+
+[ext_resource type="Script" path="res://resources/interactable.gd" id="1_m2fl2"]
+[ext_resource type="Texture2D" uid="uid://dwt06jb1wx6m8" path="res://assets/objects/bonfire.png" id="2_1pgy4"]
+
+[resource]
+script = ExtResource("1_m2fl2")
+name = "bonfire"
+frame_count = 2
+texture = ExtResource("2_1pgy4")
+take_text = "Das kann ich nicht mitnehmen."
+look_at_text = "Brennt nicht."
+hover_text = "Feuerstelle"
+is_interacted = false

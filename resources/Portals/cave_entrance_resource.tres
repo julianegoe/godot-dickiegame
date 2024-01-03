@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="PortalsResource" load_steps=2 format=3 uid="uid://c58jqex8qvr0p"]
+
+[ext_resource type="Script" path="res://resources/portals.gd" id="1_xjd41"]
+
+[resource]
+script = ExtResource("1_xjd41")
+name = "cave_entrance"
+look_at_text = "Chöhle"
+hover_text = "Höhle"
+open_text = "Rein da."
+open_to = "res://scenes/ice_cave_inside.tscn"
+is_open = true

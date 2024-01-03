@@ -1,0 +1,33 @@
+[gd_scene load_steps=3 format=3 uid="uid://d010gtpgrttxe"]
+
+[ext_resource type="Script" path="res://dickiebird/scenes/obstacles.gd" id="1_3nbae"]
+[ext_resource type="PackedScene" uid="uid://w2cqoar71o81" path="res://dickiebird/scenes/pipe_v2.tscn" id="1_jhkqk"]
+
+[node name="Obstacles" type="Node2D"]
+position = Vector2(400, 0)
+script = ExtResource("1_3nbae")
+
+[node name="UpperPipes" type="Node2D" parent="."]
+
+[node name="Pipe4" parent="UpperPipes" instance=ExtResource("1_jhkqk")]
+position = Vector2(94, 1)
+rotation = -3.14159
+
+[node name="Pipe5" parent="UpperPipes" instance=ExtResource("1_jhkqk")]
+position = Vector2(237, 2)
+rotation = -3.14159
+
+[node name="Pipe6" parent="UpperPipes" instance=ExtResource("1_jhkqk")]
+position = Vector2(359, 2)
+rotation = -3.14159
+
+[node name="LowerPipes" type="Node2D" parent="."]
+
+[node name="Pipe" parent="LowerPipes" instance=ExtResource("1_jhkqk")]
+position = Vector2(15, 240)
+
+[node name="Pipe2" parent="LowerPipes" instance=ExtResource("1_jhkqk")]
+position = Vector2(147, 242)
+
+[node name="Pipe3" parent="LowerPipes" instance=ExtResource("1_jhkqk")]
+position = Vector2(292, 239)

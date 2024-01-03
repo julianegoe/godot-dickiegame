@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bw8uyyulfbgci"]
+
+[ext_resource type="Texture2D" uid="uid://bbyecnl4h3hqn" path="res://assets/particles/snowflake.png" id="1_coxe8"]
+
+[sub_resource type="Gradient" id="Gradient_obwn1"]
+offsets = PackedFloat32Array(0.697368, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0.458824)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xnort"]
+gradient = SubResource("Gradient_obwn1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_oobxl"]
+emission_shape = 3
+emission_box_extents = Vector3(650, 0, 1)
+particle_flag_disable_z = true
+direction = Vector3(1, 1, 0)
+gravity = Vector3(-200, 300, 0)
+initial_velocity_min = 50.0
+initial_velocity_max = 232.26
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_max = 8.0
+color_ramp = SubResource("GradientTexture1D_xnort")
+collision_mode = 2
+
+[node name="Snowfall" type="CanvasLayer"]
+process_mode = 3
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(600, 0)
+scale = Vector2(4, 4)
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_oobxl")
+texture = ExtResource("1_coxe8")
+lifetime = 1.8
+randomness = 1.0

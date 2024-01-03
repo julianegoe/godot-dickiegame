@@ -1,0 +1,51 @@
+[gd_scene load_steps=12 format=3 uid="uid://cfai5mwekvajc"]
+
+[ext_resource type="PackedScene" uid="uid://jw118e0dmrti" path="res://scenes/objects/entity.tscn" id="1_wk75b"]
+[ext_resource type="Script" path="res://scenes/characters/polar_bear.gd" id="2_5qe0l"]
+[ext_resource type="Texture2D" uid="uid://cm81m1r85ay1k" path="res://assets/characters/polar_bear.png" id="2_oq072"]
+[ext_resource type="Resource" uid="uid://cvqbffps4jeer" path="res://resources/ActionItems/look_at.tres" id="3_28j3c"]
+[ext_resource type="Texture2D" uid="uid://5680ctv6su6t" path="res://assets/characters/polar_bear_n.png" id="4_1tf3f"]
+[ext_resource type="Resource" uid="uid://c2to52f80ig3v" path="res://resources/ActionItems/talk.tres" id="4_o53sp"]
+[ext_resource type="Script" path="res://resources/action_menu_resource.gd" id="5_qkktu"]
+[ext_resource type="PackedScene" uid="uid://c5nx8c218ff8g" path="res://scenes/ui/speechbubble.tscn" id="8_07fxm"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_4u87i"]
+radius = 73.0
+height = 270.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_lpsna"]
+diffuse_texture = ExtResource("2_oq072")
+normal_texture = ExtResource("4_1tf3f")
+
+[sub_resource type="Resource" id="Resource_u1lgt"]
+script = ExtResource("5_qkktu")
+action_items = Array[Resource("res://resources/action_item.gd")]([ExtResource("3_28j3c"), ExtResource("4_o53sp")])
+
+[node name="PolarBear" instance=ExtResource("1_wk75b")]
+script = ExtResource("2_5qe0l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="0"]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_4u87i")
+
+[node name="Sprite2D" parent="." index="1"]
+position = Vector2(-30, -24)
+scale = Vector2(4, 4)
+texture = SubResource("CanvasTexture_lpsna")
+
+[node name="ActionMenu" parent="." index="2"]
+actions = SubResource("Resource_u1lgt")
+
+[node name="Ui" type="CanvasLayer" parent="." index="3"]
+follow_viewport_enabled = true
+
+[node name="Node2D" type="Node2D" parent="Ui" index="0"]
+position = Vector2(-450, -350)
+
+[node name="Speechbubble" parent="Ui/Node2D" index="0" instance=ExtResource("8_07fxm")]
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="." index="4"]
+position = Vector2(-450, -350)
+remote_path = NodePath("../Ui/Node2D")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]

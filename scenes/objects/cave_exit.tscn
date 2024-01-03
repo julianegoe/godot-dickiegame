@@ -1,0 +1,34 @@
+[gd_scene load_steps=10 format=3 uid="uid://doqurgn77panp"]
+
+[ext_resource type="PackedScene" uid="uid://jw118e0dmrti" path="res://scenes/objects/entity.tscn" id="1_rksl2"]
+[ext_resource type="Script" path="res://scenes/objects/CaveExit.gd" id="2_wa3dp"]
+[ext_resource type="Texture2D" uid="uid://cs8ijq01upqfx" path="res://assets/level1_background/cave_entry.png" id="3_25j27"]
+[ext_resource type="Resource" uid="uid://dnl08wjeh7brb" path="res://resources/Portals/cave_exit_resource.tres" id="3_f6rbd"]
+[ext_resource type="Resource" uid="uid://cvqbffps4jeer" path="res://resources/ActionItems/look_at.tres" id="5_g2pys"]
+[ext_resource type="Resource" uid="uid://c80fmhicnmui" path="res://resources/ActionItems/open.tres" id="6_rwdm7"]
+[ext_resource type="Script" path="res://resources/action_menu_resource.gd" id="7_rtrn8"]
+
+[sub_resource type="Resource" id="Resource_born6"]
+script = ExtResource("7_rtrn8")
+action_items = Array[Resource("res://resources/action_item.gd")]([ExtResource("5_g2pys"), ExtResource("6_rwdm7")])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y4s2u"]
+size = Vector2(164, 721)
+
+[node name="CaveExit" instance=ExtResource("1_rksl2")]
+script = ExtResource("2_wa3dp")
+resource = ExtResource("3_f6rbd")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(58, 1)
+scale = Vector2(-3.61483, 3.61483)
+texture = ExtResource("3_25j27")
+
+[node name="ActionMenu" parent="." index="1"]
+actions = SubResource("Resource_born6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." index="2"]
+position = Vector2(94, -1.5)
+shape = SubResource("RectangleShape2D_y4s2u")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
