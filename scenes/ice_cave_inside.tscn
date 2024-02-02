@@ -31,9 +31,8 @@ size = Vector2(66, 630)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5xlbb"]
 size = Vector2(64.5, 598.5)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_coopj"]
-radius = 30.0
-height = 86.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dv055"]
+size = Vector2(44.9997, 415)
 
 [node name="IceCave" instance=ExtResource("1_ge3pg")]
 script = ExtResource("2_8eole")
@@ -139,9 +138,9 @@ position = Vector2(2639, 617)
 position = Vector2(4000, 0)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Interactables/Home" index="0"]
-position = Vector2(1182, 585)
+position = Vector2(1091.5, 572.5)
 rotation = 1.5708
-shape = SubResource("CapsuleShape2D_coopj")
+shape = SubResource("RectangleShape2D_dv055")
 
 [node name="Darkness" type="DirectionalLight2D" parent="." index="7"]
 z_index = 100
@@ -188,6 +187,8 @@ offset = Vector2(0, -200)
 [node name="HomeMusic" type="AudioStreamPlayer2D" parent="." index="13"]
 position = Vector2(5085, 514)
 stream = ExtResource("13_wdy2o")
+
+[node name="CreditsLayer" type="CanvasLayer" parent="." index="17"]
 
 [connection signal="body_entered" from="WorldBounds/DangerZone" to="." method="_on_danger_zone_body_entered"]
 [connection signal="body_entered" from="WorldBounds/HomeZone" to="." method="_on_home_zone_body_entered"]

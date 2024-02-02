@@ -7,6 +7,45 @@
 [ext_resource type="Texture2D" uid="uid://cm81m1r85ay1k" path="res://assets/characters/polar_bear.png" id="4_oae2t"]
 [ext_resource type="Texture2D" uid="uid://dk3i4b6plmxye" path="res://assets/characters/seal_family.png" id="5_js1r2"]
 
+[sub_resource type="Animation" id="Animation_3o5fm"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Characters/Dickie:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Characters/Explorer:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Characters/SealFamily:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
 [sub_resource type="Animation" id="Animation_1o82f"]
 resource_name = "walk"
 length = 0.4
@@ -48,45 +87,6 @@ tracks/2/keys = {
 "values": [0, 1, 2]
 }
 
-[sub_resource type="Animation" id="Animation_3o5fm"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Characters/Dickie:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Characters/Explorer:frame")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Characters/SealFamily:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_tmsuo"]
 _data = {
 "RESET": SubResource("Animation_3o5fm"),
@@ -101,6 +101,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ii831")
+metadata/_edit_vertical_guides_ = [388.0]
+metadata/_edit_horizontal_guides_ = [1299.0]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0
@@ -136,153 +138,110 @@ hframes = 3
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.417
-anchor_right = 0.5
+anchor_right = 0.995
 anchor_bottom = 1.017
 offset_top = -0.240021
-offset_bottom = -0.240051
+offset_right = -0.00012207
+offset_bottom = -0.23999
 grow_horizontal = 2
 grow_vertical = 2
 horizontal_scroll_mode = 0
 vertical_scroll_mode = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
-custom_minimum_size = Vector2(600, 0)
+[node name="Control" type="Control" parent="ScrollContainer"]
+custom_minimum_size = Vector2(1200, 1000)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
+[node name="RichTextLabel" type="RichTextLabel" parent="ScrollContainer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -204.0
+offset_top = 12.0
+offset_right = 396.0
+offset_bottom = 112.0
+grow_horizontal = 2
 theme_override_colors/default_color = Color(0.858824, 0.858824, 0.858824, 1)
 theme_override_fonts/normal_font = ExtResource("1_bw37e")
 theme_override_font_sizes/normal_font_size = 50
-text = "Das ist ein Test"
+text = "Ein Spiel von 
+Juliane Görsch"
 fit_content = true
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
+[node name="RichTextLabel16" type="RichTextLabel" parent="ScrollContainer/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 397.0
+offset_top = 255.0
+offset_right = -203.0
+offset_bottom = 305.0
+grow_horizontal = 2
 theme_override_colors/default_color = Color(0.858824, 0.858824, 0.858824, 1)
 theme_override_fonts/normal_font = ExtResource("1_bw37e")
 theme_override_font_sizes/normal_font_size = 50
-text = "Das ist ein Test"
+text = "Danke fürs Spielen!"
 fit_content = true
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
+[node name="RichTextLabel17" type="RichTextLabel" parent="ScrollContainer/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 396.0
+offset_top = 427.0
+offset_right = -204.0
+offset_bottom = 477.0
+grow_horizontal = 2
 theme_override_colors/default_color = Color(0.858824, 0.858824, 0.858824, 1)
 theme_override_fonts/normal_font = ExtResource("1_bw37e")
 theme_override_font_sizes/normal_font_size = 50
-text = "Das ist ein Test"
+text = "Besonderer Dank an"
 fit_content = true
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
+[node name="RichTextLabel18" type="RichTextLabel" parent="ScrollContainer/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 396.0
+offset_top = 554.0
+offset_right = -204.0
+offset_bottom = 604.0
+grow_horizontal = 2
 theme_override_colors/default_color = Color(0.858824, 0.858824, 0.858824, 1)
 theme_override_fonts/normal_font = ExtResource("1_bw37e")
 theme_override_font_sizes/normal_font_size = 50
-text = "Das ist ein Test"
+text = "Hendrik Görsch (Musik)"
 fit_content = true
 
-[node name="RichTextLabel5" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
+[node name="RichTextLabel19" type="RichTextLabel" parent="ScrollContainer/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 395.0
+offset_top = 650.0
+offset_right = -205.0
+offset_bottom = 750.0
+grow_horizontal = 2
 theme_override_colors/default_color = Color(0.858824, 0.858824, 0.858824, 1)
 theme_override_fonts/normal_font = ExtResource("1_bw37e")
 theme_override_font_sizes/normal_font_size = 50
-text = "Das ist ein Test"
+text = "Konstantin Keller (Ideen und Tagebucheinträge)"
 fit_content = true
 
-[node name="RichTextLabel6" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
+[node name="RichTextLabel20" type="RichTextLabel" parent="ScrollContainer/Control"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 394.0
+offset_top = 877.0
+offset_right = -206.0
+offset_bottom = 977.0
+grow_horizontal = 2
 theme_override_colors/default_color = Color(0.858824, 0.858824, 0.858824, 1)
 theme_override_fonts/normal_font = ExtResource("1_bw37e")
 theme_override_font_sizes/normal_font_size = 50
-text = "Das ist ein Test"
-fit_content = true
-
-[node name="RichTextLabel7" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0.858824, 0.858824, 0.858824, 1)
-theme_override_fonts/normal_font = ExtResource("1_bw37e")
-theme_override_font_sizes/normal_font_size = 50
-text = "Das ist ein Test"
-fit_content = true
-
-[node name="RichTextLabel8" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0.858824, 0.858824, 0.858824, 1)
-theme_override_fonts/normal_font = ExtResource("1_bw37e")
-theme_override_font_sizes/normal_font_size = 50
-text = "Das ist ein Test"
-fit_content = true
-
-[node name="RichTextLabel9" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0.858824, 0.858824, 0.858824, 1)
-theme_override_fonts/normal_font = ExtResource("1_bw37e")
-theme_override_font_sizes/normal_font_size = 50
-text = "Das ist ein Test"
-fit_content = true
-
-[node name="RichTextLabel10" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0.858824, 0.858824, 0.858824, 1)
-theme_override_fonts/normal_font = ExtResource("1_bw37e")
-theme_override_font_sizes/normal_font_size = 50
-text = "Das ist ein Test"
-fit_content = true
-
-[node name="RichTextLabel11" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0.858824, 0.858824, 0.858824, 1)
-theme_override_fonts/normal_font = ExtResource("1_bw37e")
-theme_override_font_sizes/normal_font_size = 50
-text = "Das ist ein Test"
-fit_content = true
-
-[node name="RichTextLabel12" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0.858824, 0.858824, 0.858824, 1)
-theme_override_fonts/normal_font = ExtResource("1_bw37e")
-theme_override_font_sizes/normal_font_size = 50
-text = "Das ist ein Test"
-fit_content = true
-
-[node name="RichTextLabel13" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0.858824, 0.858824, 0.858824, 1)
-theme_override_fonts/normal_font = ExtResource("1_bw37e")
-theme_override_font_sizes/normal_font_size = 50
-text = "Das ist ein Test"
-fit_content = true
-
-[node name="RichTextLabel14" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0.858824, 0.858824, 0.858824, 1)
-theme_override_fonts/normal_font = ExtResource("1_bw37e")
-theme_override_font_sizes/normal_font_size = 50
-text = "Das ist ein Test"
-fit_content = true
-
-[node name="RichTextLabel15" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0.858824, 0.858824, 0.858824, 1)
-theme_override_fonts/normal_font = ExtResource("1_bw37e")
-theme_override_font_sizes/normal_font_size = 50
-text = "Das ist ein Test"
-fit_content = true
-
-[node name="RichTextLabel16" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0.858824, 0.858824, 0.858824, 1)
-theme_override_fonts/normal_font = ExtResource("1_bw37e")
-theme_override_font_sizes/normal_font_size = 50
-text = "Das ist ein Test"
-fit_content = true
-
-[node name="RichTextLabel17" type="RichTextLabel" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0.858824, 0.858824, 0.858824, 1)
-theme_override_fonts/normal_font = ExtResource("1_bw37e")
-theme_override_font_sizes/normal_font_size = 50
-text = "Das ist ein letztwe Test"
+text = "Ende."
 fit_content = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -290,3 +249,5 @@ libraries = {
 "": SubResource("AnimationLibrary_tmsuo")
 }
 autoplay = "walk"
+
+[connection signal="scroll_ended" from="ScrollContainer" to="." method="_on_scroll_container_scroll_ended"]

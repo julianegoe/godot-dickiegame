@@ -1,6 +1,7 @@
 class_name Speechbubble extends Panel
 
 signal quest_unlocked(questName: String)
+signal dialogue_over()
 
 var DEFAULT_SIZE: Vector2 = Vector2(470, 227)
 
@@ -43,6 +44,7 @@ func _on_next_button_pressed():
 func _on_dialogue_manager_ui_close():
 	hide()
 	dialogueManager.hide_choices()
+	dialogue_over.emit()
 
 func _on_dialogue_manager_text_complete(data):
 	await get_tree().create_timer(0.25).timeout
@@ -64,3 +66,4 @@ func _on_dialogue_manager_choice_selected(data):
 	else:
 		hide()
 		dialogueManager.hide_choices()
+		dialogue_over.emit()
